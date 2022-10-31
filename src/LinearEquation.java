@@ -42,11 +42,12 @@ public class LinearEquation {
     }
     public String equation(){
         double yInt = yIntercept();
+        System.out.println(fracSlope());
         String equation = "y = ";
         if (fracSlope().equals("1")){
-            equation += "x + ";
+            equation += "x ";
         } else if(fracSlope().equals("-1")){
-            equation += "-x + ";
+            equation += "-x ";
         } else if(y2-y1==0.0) {
 
         }
@@ -54,10 +55,17 @@ public class LinearEquation {
             equation+= fracSlope() + "x " ;
         }
         if(yInt>0){
-            equation += "+ " + yInt;
+            if(fracSlope().equals("")){
+                equation += yInt;
+            } else {
+                equation += "+ " + yInt;
+            }
         } else if (yInt<0){
             equation += "- " + Math.abs(yInt);
-        } else {
+        } else if (yInt==0.0){
+
+        }
+        else {
             return equation;
         }
         return equation;
@@ -67,6 +75,7 @@ public class LinearEquation {
         double yD = y2 - y1;
         return (xD<0 && yD<0) || (xD>=0 && yD>=0);
     }
+    // method used to help make the slope in the simplest form//
     public int greatestCommonFactor(){
         String factorList = "";
         double xD = Math.abs(x2 - x1);
@@ -87,7 +96,7 @@ public class LinearEquation {
         int gcf = Integer.parseInt(sub);
         return gcf;
     }
-
+// method used to print the slope in the simplest form//
     public String fracSlope(){
         String slope = "";
         double xD = Math.abs(x2 - x1);
